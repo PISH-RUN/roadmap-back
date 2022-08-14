@@ -1,6 +1,10 @@
-const path = require('path');
+const path = require("path");
 
-module.exports = ({ env }) => ({
+module.exports = ({ env }) => {
+  return database(env)[env("NODE_ENV").toLowerCase()];
+};
+
+const database = (env) => ({
   development: {
     connection: {
       client: "sqlite",
