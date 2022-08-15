@@ -1,4 +1,17 @@
-'use strict';
+"use strict";
+
+require("./init");
+
+const _ = require("lodash");
+
+// register
+const callbackUser = require("./extensions/otp/modifiers/callback-user");
+
+// lifecycles
+const registerUserLifecycle = require("./extensions/users-permissions/lifecycles");
+
+// otp
+const otpCallback = require("./bootstrap/otp-callback");
 
 module.exports = {
   /**
@@ -7,7 +20,9 @@ module.exports = {
    *
    * This gives you an opportunity to extend code.
    */
-  register(/*{ strapi }*/) {},
+  async register({ strapi }) {
+    strapi.services["plugin::otp.user"].callbackUser = callbackUser;
+  },
 
   /**
    * An asynchronous bootstrap function that runs before
@@ -16,5 +31,9 @@ module.exports = {
    * This gives you an opportunity to set up your data model,
    * run jobs, or perform some special logic.
    */
-  bootstrap(/*{ strapi }*/) {},
+  async bootstrap({ strapi }) {
+    registerUserLifecycle(strapi);
+
+    await otpCallback(strapi);
+  },
 };

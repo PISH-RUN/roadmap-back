@@ -1,9 +1,11 @@
 // TODO: extract to related file
 const getService = (name) => () => strapi.service(name);
 
+const metaService = getService("api::meta.meta");
+
 // plugin:otp
 const optExtendedService = getService("plugin::otp.extended");
-
+const otpRandomService = getService("plugin::otp.random");
 
 // plugin::users-permissions
 const userExtendedService = getService("plugin::users-permissions.extended");
@@ -14,7 +16,9 @@ const userService = getService("plugin::users-permissions.user");
 const userSettingService = getService("api::user-setting.user-setting");
 
 module.exports = {
+  metaService,
   optExtendedService,
+  otpRandomService,
   userExtendedService,
   userJwtService,
   userService,
