@@ -1,0 +1,38 @@
+{
+    "kind": "collectionType",
+    "collectionName": "otps",
+    "info": {
+      "singularName": "otp",
+      "pluralName": "otps",
+      "displayName": "otp"
+    },
+    "options": {
+      "draftAndPublish": false,
+      "timestamps": false,
+      "comment": ""
+    },
+    "pluginOptions": {
+      "content-manager": {
+        "visible": false
+      }
+    },
+    "attributes": {
+      "token": {
+        "type": "password",
+        "private": true,
+        "configurable": false
+      },
+      "expiresAt": {
+        "type": "datetime",
+        "configurable": false
+      },
+      "user": {
+        "type": "relation",
+        "relation": "oneToOne",
+        "target": "plugin::users-permissions.user",
+        "inversedBy": "otp",
+        "configurable": false
+      }
+    }
+  }
+  
