@@ -23,4 +23,17 @@ module.exports = ({ env }) => ({
       },
     },
   },
+  socketio: {
+    enabled: true,
+    resolve: "./src/plugins/socketio",
+    config: {
+      options: {
+        cors: {
+          origin: "*",
+          methods: ["GET", "POST"],
+          credentials: true,
+        },
+      },
+    },
+  },
 });
