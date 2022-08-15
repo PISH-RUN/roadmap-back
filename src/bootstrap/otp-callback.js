@@ -1,10 +1,11 @@
 "use strict";
 
-const messengerService = require("../utils/services");
+const {messengerService} = require("../utils/services");
 
 module.exports = (strapi) => {
   strapi.plugin("otp").setCallback((user, token) => {
     if (process.env.NODE_ENV === "production") {
+      console.log("otp-callback");
       messengerService().otp(user.mobile, token);
       return;
     }
