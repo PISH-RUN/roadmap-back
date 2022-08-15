@@ -1,4 +1,4 @@
- {
+{
   "kind": "collectionType",
   "collectionName": "up_users",
   "info": {
@@ -139,6 +139,12 @@
         "حذف شده"
       ],
       "default": "فعال"
+    },
+    "meta": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::meta.meta",
+      "inversedBy": "user"
     }
   }
 }
