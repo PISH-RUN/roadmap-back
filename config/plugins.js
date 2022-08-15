@@ -29,8 +29,7 @@ module.exports = ({ env }) => ({
     config: {
       options: {
         cors: {
-          origin: "*",
-          methods: ["GET", "POST"],
+          origin: env("SOCKET_ORIGIN", "http://localhost:3000").split(","),
           credentials: true,
         },
       },

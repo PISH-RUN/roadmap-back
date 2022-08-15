@@ -29,6 +29,7 @@ class IO {
     return this._socket.to(rooms).emit(type, payload);
   }
 
+  // TODO - refactor get socket method
   getSocketBy(userId) {
     const sockets = this._socket.sockets.sockets;
     let socket;
