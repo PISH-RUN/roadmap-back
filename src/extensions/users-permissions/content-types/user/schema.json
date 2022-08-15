@@ -145,6 +145,13 @@
       "relation": "oneToOne",
       "target": "api::meta.meta",
       "inversedBy": "user"
+    },
+    "otp": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::otp.otp",
+      "inversedBy": "user",
+      "configurable": false
     }
   }
 }
