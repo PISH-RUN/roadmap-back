@@ -11,6 +11,7 @@ const callbackUser = require("./extensions/otp/modifiers/callback-user");
 const registerUserLifecycle = require("./extensions/users-permissions/lifecycles");
 
 // otp
+const registerMessengerMethods = require("./bootstrap/register-messenger-methods");
 const otpCallback = require("./bootstrap/otp-callback");
 
 module.exports = {
@@ -34,6 +35,7 @@ module.exports = {
   async bootstrap({ strapi }) {
     registerUserLifecycle(strapi);
 
+    await registerMessengerMethods(strapi);
     await otpCallback(strapi);
   },
 };

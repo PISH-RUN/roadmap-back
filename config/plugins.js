@@ -1,4 +1,16 @@
 module.exports = ({ env }) => ({
+  sms: {
+    enabled: true,
+    resolve: "./src/plugins/sms",
+    config: {
+      provider: env("SMS_PROVIDER", "ghasedak"),
+      providersOptions: {
+        ghasedak: {
+          apiKey: env("GHASEDAK_API_KEY"),
+        },
+      },
+    },
+  },
   otp: {
     enabled: true,
     resolve: "./src/plugins/otp",
