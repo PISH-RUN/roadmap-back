@@ -152,6 +152,12 @@
       "target": "plugin::otp.otp",
       "inversedBy": "user",
       "configurable": false
+    },
+    "purchases": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::purchase.purchase",
+      "mappedBy": "user"
     }
   }
 }
