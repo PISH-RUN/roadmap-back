@@ -39,6 +39,12 @@
     "price": {
       "type": "integer",
       "required": true
+    },
+    "payment": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::payment.payment",
+      "inversedBy": "purchase"
     }
   }
 }
