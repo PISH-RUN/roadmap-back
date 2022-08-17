@@ -72,6 +72,13 @@
       "inversedBy": "users",
       "configurable": false
     },
+    "otp": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::otp.otp",
+      "inversedBy": "user",
+      "configurable": false
+    },
     "mobile": {
       "type": "string",
       "unique": true,
@@ -144,20 +151,16 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::meta.meta",
-      "inversedBy": "user"
-    },
-    "otp": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "plugin::otp.otp",
-      "inversedBy": "user",
-      "configurable": false
+      "mappedBy": "user"
     },
     "purchases": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::purchase.purchase",
       "mappedBy": "user"
+    },
+    "subscribedUntil": {
+      "type": "datetime"
     }
   }
 }

@@ -1,7 +1,8 @@
 "use strict";
+
 const _ = require("lodash");
 const { getModelFieldsEnum } = require("../../../utils/model");
-const { userService } = require("../../../utils/services");
+const { userService, userRoleService } = require("../../../utils/services");
 const { metaQuery } = require("../../../utils/queries");
 
 const updateUser = (userId, params) =>
@@ -38,5 +39,17 @@ module.exports = ({ strapi }) => ({
     });
 
     return user;
+  },
+
+  async findRole(name) {
+    const roles = await userRoleService().find();
+
+    return roles.find((role) => role.name.toLowerCase() === name);
+  },
+  async subscribedRole() {
+    return await this.findRole("subscribed");
+  },
+  async authenticatedRole() {
+    return await this.findRole("authenticated");
   },
 });
