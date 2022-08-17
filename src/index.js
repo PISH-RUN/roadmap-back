@@ -2,7 +2,10 @@
 
 require("./init");
 
+
 const _ = require("lodash");
+
+const zarinpal = require("./lib/zarinpal");
 
 // register
 const callbackUser = require("./extensions/otp/modifiers/callback-user");
@@ -23,6 +26,8 @@ module.exports = {
    */
   async register({ strapi }) {
     strapi.services["plugin::otp.user"].callbackUser = callbackUser;
+
+    strapi.zarinpal = zarinpal({ strapi });
   },
 
   /**
