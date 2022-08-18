@@ -1,6 +1,11 @@
 // TODO: extract to related file
 const getService = (name) => () => strapi.service(name);
 
+// api::coupon
+const couponExtendedService = getService("api::coupon.extended");
+const couponService = getService("api::coupon.coupon");
+
+// api::meta
 const metaService = getService("api::meta.meta");
 
 //plugin::sms
@@ -31,6 +36,8 @@ const userService = getService("plugin::users-permissions.user");
 const userSettingService = getService("api::user-setting.user-setting");
 
 module.exports = {
+  couponExtendedService,
+  couponService,
   metaService,
   messengerService,
   optExtendedService,

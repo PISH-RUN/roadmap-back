@@ -11,7 +11,13 @@ const { paymentQuery } = require("../../../utils/queries");
 
 module.exports = ({ strapi }) => ({
   async createPayment(purchase) {
+    purchase = await purchaseExtendedService().update(purchase.id);
+
     const amount = purchase.price;
+
+    if (amount < 1000) {
+      return [amount, null];
+    }
 
     try {
       const response = await strapi.zarinpal.request(
@@ -35,13 +41,13 @@ module.exports = ({ strapi }) => ({
         },
       });
 
-      return payment;
+      return [amount, payment];
     } catch (e) {
       console.error(e.message);
       console.log(e);
     }
 
-    return null;
+    return [];
   },
 
   async verify(authority) {
@@ -54,7 +60,7 @@ module.exports = ({ strapi }) => ({
       throw new Error(`No Payment found`);
     }
 
-    if (payment.refId) {  
+    if (payment.refId) {
       return payment.purchase;
     }
 

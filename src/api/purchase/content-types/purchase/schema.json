@@ -45,6 +45,11 @@
       "relation": "oneToOne",
       "target": "api::payment.payment",
       "inversedBy": "purchase"
+    },
+    "coupon": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::coupon.coupon"
     }
   }
 }
