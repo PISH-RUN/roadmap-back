@@ -12,5 +12,10 @@ module.exports = {
       path: "/purchase-payment",
       handler: "subscription.payment",
     },
+    {
+      method: "POST",
+      path: "/purchase-coupon",
+      handler: "subscription.coupon",
+    },
   ],
 };

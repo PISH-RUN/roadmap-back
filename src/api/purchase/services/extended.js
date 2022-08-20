@@ -8,6 +8,7 @@ const {
   userExtendedService,
   purchaseService,
   userService,
+  couponService,
 } = require("../../../utils/services");
 
 module.exports = ({ strapi }) => ({
@@ -15,7 +16,7 @@ module.exports = ({ strapi }) => ({
     const role = await userExtendedService().subscribedRole();
 
     purchase = await purchaseService().findOne(purchase.id, {
-      populate: ["user", "subscription"],
+      populate: ["user", "subscription", "coupon"],
     });
 
     const { user, subscription, coupon } = purchase;
@@ -45,6 +46,12 @@ module.exports = ({ strapi }) => ({
       subscribedUntil: subscribeTime,
       role: role.id,
     });
+
+    if (coupon) {
+      await couponService().update(coupon.id, {
+        data: { used: coupon.used + 1 },
+      });
+    }
 
     return purchase;
   },
