@@ -5,13 +5,13 @@ const addMonths = require("date-fns/addMonths");
 
 const {
   paymentService,
-  purchaseExtendedService,
+  purchaseCustomService,
 } = require("../../../utils/services");
 const { paymentQuery } = require("../../../utils/queries");
 
 module.exports = ({ strapi }) => ({
   async createPayment(purchase) {
-    purchase = await purchaseExtendedService().update(purchase.id);
+    purchase = await purchaseCustomService().update(purchase.id);
 
     const amount = purchase.price;
 

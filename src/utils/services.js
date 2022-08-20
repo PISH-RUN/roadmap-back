@@ -20,6 +20,7 @@ const paymentService = getService("api::payment.payment");
 const paymentZarinpalService = getService("api::payment.zarinpal");
 
 // api::purchase
+const purchaseCustomService = getService("api::purchase.custom");
 const purchaseExtendedService = getService("api::purchase.extended");
 const purchaseService = getService("api::purchase.purchase");
 
@@ -43,6 +44,7 @@ module.exports = {
   optExtendedService,
   otpRandomService,
   paymentService,
+  purchaseCustomService,
   purchaseExtendedService,
   purchaseService,
   paymentZarinpalService,
