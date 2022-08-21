@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "transaction_histories",
+  "info": {
+    "singularName": "transaction-history",
+    "pluralName": "transaction-histories",
+    "displayName": "transaction-history",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "fundWithdraw",
+        "purchaseWithdraw",
+        "chargeDeposit",
+        "purchaseDeposit"
+      ]
+    },
+    "from": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "amount": {
+      "type": "decimal"
+    },
+    "wallet": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::wallet.wallet",
+      "inversedBy": "transaction_histories"
+    }
+  }
+}

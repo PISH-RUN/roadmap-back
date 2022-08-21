@@ -9,6 +9,7 @@ const {
   purchaseService,
   userService,
   couponService,
+  walletExtendedService,
 } = require("../../../utils/services");
 
 module.exports = ({ strapi }) => ({
@@ -38,21 +39,54 @@ module.exports = ({ strapi }) => ({
       subscribeTime = addMonths(subscribeTime, subscription.months);
     }
 
-    await purchaseService().update(purchase.id, {
-      data: { status: "completed" },
-    });
+    let oldUser = await userService().fetch(user.id, { populate: ["role"] });
 
-    await userService().edit(user.id, {
-      subscribedUntil: subscribeTime,
-      role: role.id,
-    });
-
+    let oldCoupon;
     if (coupon) {
-      await couponService().update(coupon.id, {
-        data: { used: coupon.used + 1 },
-      });
+      oldCoupon = await couponService().findOne(coupon.id);
     }
 
-    return purchase;
+    try {
+      await purchaseService().update(purchase.id, {
+        data: { status: "completed" },
+      });
+
+      await userService().edit(user.id, {
+        subscribedUntil: subscribeTime,
+        role: role.id,
+      });
+
+      if (coupon) {
+        await couponService().update(coupon.id, {
+          data: { used: coupon.used + 1 },
+        });
+      }
+
+      await walletExtendedService().chargeDeposit(
+        user.id,
+        subscription.currentPrice
+      );
+
+      return purchase;
+    } catch (e) {
+      console.log(e);
+      // rollback
+      await purchaseService().update(purchase.id, {
+        data: { status: "waitingForPayment" },
+      });
+
+      await userService().edit(user.id, {
+        subscribedUntil: oldUser.subscribedUntil,
+        role: oldUser.role.id,
+      });
+
+      if (coupon) {
+        await couponService().update(coupon.id, {
+          data: { used: oldCoupon.used },
+        });
+      }
+
+      throw new Error("Purchase failed");
+    }
   },
 });

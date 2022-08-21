@@ -2,7 +2,11 @@
 
 const crypto = require("crypto");
 
-const { metaService, otpRandomService } = require("../../../utils/services");
+const {
+  metaService,
+  otpRandomService,
+  walletService,
+} = require("../../../utils/services");
 const { metaQuery } = require("../../../utils/queries");
 
 module.exports = (strapi) => {
@@ -36,6 +40,10 @@ module.exports = (strapi) => {
 
         break;
       }
+
+      await walletService().create({
+        data: { user: result.id },
+      });
     },
   });
 };

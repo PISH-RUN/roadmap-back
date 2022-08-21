@@ -27,6 +27,11 @@ const purchaseService = getService("api::purchase.purchase");
 // api::subscription
 const subscriptionService = getService("api::subscription.subscription");
 
+// api::transaction-history
+const transactionHistoryService = getService(
+  "api::transaction-history.transaction-history"
+);
+
 // plugin::users-permissions
 const userExtendedService = getService("plugin::users-permissions.extended");
 const userJwtService = getService("plugin::users-permissions.jwt");
@@ -35,6 +40,10 @@ const userService = getService("plugin::users-permissions.user");
 
 // api::user-setting
 const userSettingService = getService("api::user-setting.user-setting");
+
+// api::wallet
+const walletExtendedService = getService("api::wallet.extended");
+const walletService = getService("api::wallet.wallet");
 
 module.exports = {
   couponExtendedService,
@@ -49,9 +58,12 @@ module.exports = {
   purchaseService,
   paymentZarinpalService,
   subscriptionService,
+  transactionHistoryService,
   userExtendedService,
   userJwtService,
   userRoleService,
   userService,
   userSettingService,
+  walletExtendedService,
+  walletService,
 };
