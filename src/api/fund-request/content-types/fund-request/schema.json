@@ -4,7 +4,8 @@
   "info": {
     "singularName": "fund-request",
     "pluralName": "fund-requests",
-    "displayName": "fund-request"
+    "displayName": "fund-request",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -12,7 +13,8 @@
   "pluginOptions": {},
   "attributes": {
     "amount": {
-      "type": "decimal"
+      "type": "decimal",
+      "min": 0
     },
     "status": {
       "type": "enumeration",
