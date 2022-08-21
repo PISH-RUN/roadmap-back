@@ -1,7 +1,5 @@
 "use strict";
 
-"use strict";
-
 const {
   walletExtendedService,
   fundRequestExtendedService,
@@ -9,12 +7,19 @@ const {
 
 const { userQuery } = require("../../../utils/queries");
 
+const {
+  validateFundRequest,
+  validateFundAnswer,
+} = require("../../fund-request/controllers/validations/custom");
+
 module.exports = {
   async request(ctx) {
     const { user: authUser } = ctx.state;
     const { body } = ctx.request;
     const { data } = body;
     const { amount } = data;
+
+    await validateFundRequest(data);
 
     const canRequsetFund = await walletExtendedService().checkBalance(
       authUser.id,
@@ -36,6 +41,8 @@ module.exports = {
     const { body } = ctx.request;
     const { data } = body;
     const { amount, userUUID } = data;
+
+    await validateFundAnswer(data);
 
     const targetUser = await userQuery().findOne({
       where: { uuid: userUUID },
