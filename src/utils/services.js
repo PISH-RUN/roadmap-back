@@ -6,8 +6,8 @@ const couponExtendedService = getService("api::coupon.extended");
 const couponService = getService("api::coupon.coupon");
 
 // api::found-request
-const foundRequestExtendedService = getService("api::found-request.extended");
-const foundRequestService = getService("api::found-request.found-request");
+const fundRequestExtendedService = getService("api::fund-request.extended");
+const fundRequestService = getService("api::fund-request.fund-request");
 
 // api::meta
 const metaService = getService("api::meta.meta");
@@ -52,8 +52,8 @@ const walletService = getService("api::wallet.wallet");
 module.exports = {
   couponExtendedService,
   couponService,
-  foundRequestExtendedService,
-  foundRequestService,
+  fundRequestExtendedService,
+  fundRequestService,
   metaService,
   messengerService,
   optExtendedService,

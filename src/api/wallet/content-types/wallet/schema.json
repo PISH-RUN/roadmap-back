@@ -29,10 +29,10 @@
       "target": "api::transaction-history.transaction-history",
       "mappedBy": "wallet"
     },
-    "found_request": {
+    "fund_request": {
       "type": "relation",
       "relation": "oneToOne",
-      "target": "api::found-request.found-request",
+      "target": "api::fund-request.fund-request",
       "inversedBy": "wallet"
     }
   }
