@@ -4,12 +4,12 @@ module.exports = {
   routes: [
     {
       method: "POST",
-      path: "extended/test/buy",
+      path: "/extended/wallets/test/buy",
       handler: "extended.buy",
     },
     {
       method: "POST",
-      path: "extended/fund-request",
+      path: "/extended/wallets/fund-request",
       handler: "extended.fundReq",
     },
   ],
