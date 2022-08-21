@@ -119,12 +119,6 @@ module.exports = {
     }
   },
 
-  async fundWithdrawReq() {
-    // get user's wallet
-    // check amount for request with balance
-    // update or create found request
-  },
-
   async checkBalance(userId, amount) {
     // get user(target)'s wallet
     const wallet = await walletService().findOneBy({ user: userId });

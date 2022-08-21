@@ -28,6 +28,12 @@
       "relation": "oneToMany",
       "target": "api::transaction-history.transaction-history",
       "mappedBy": "wallet"
+    },
+    "found_request": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::found-request.found-request",
+      "inversedBy": "wallet"
     }
   }
 }

@@ -1,0 +1,32 @@
+{
+  "kind": "collectionType",
+  "collectionName": "found_requests",
+  "info": {
+    "singularName": "found-request",
+    "pluralName": "found-requests",
+    "displayName": "found-request",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "amount": {
+      "type": "decimal"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "request",
+        "done"
+      ]
+    },
+    "wallet": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::wallet.wallet",
+      "inversedBy": "found_request"
+    }
+  }
+}

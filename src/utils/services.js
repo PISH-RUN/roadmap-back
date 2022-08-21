@@ -5,6 +5,10 @@ const getService = (name) => () => strapi.service(name);
 const couponExtendedService = getService("api::coupon.extended");
 const couponService = getService("api::coupon.coupon");
 
+// api::found-request
+const foundRequestExtendedService = getService("api::found-request.extended");
+const foundRequestService = getService("api::found-request.found-request");
+
 // api::meta
 const metaService = getService("api::meta.meta");
 
@@ -48,6 +52,8 @@ const walletService = getService("api::wallet.wallet");
 module.exports = {
   couponExtendedService,
   couponService,
+  foundRequestExtendedService,
+  foundRequestService,
   metaService,
   messengerService,
   optExtendedService,
