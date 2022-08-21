@@ -70,18 +70,23 @@ module.exports = {
     );
 
     if (amount !== undefined && !payment) {
-      await purchaseExtendedService().succeed(purchase);
-      const successRedirect = strapi.config.get(
-        "payment.success",
-        "https://pishrunroadmap.com"
-      );
+      try {
+        await purchaseExtendedService().succeed(purchase);
+        const successRedirect = strapi.config.get(
+          "payment.success",
+          "https://pishrunroadmap.com"
+        );
 
-      return {
-        data: {
-          url: successRedirect + `?purchase=${purchase.uuid}`,
-          payment: false,
-        },
-      };
+        return {
+          data: {
+            url: successRedirect + `?purchase=${purchase.uuid}`,
+            payment: false,
+          },
+        };
+      } catch (e) {
+        console.log(e);
+        return ctx.serviceUnavailable();
+      }
     }
 
     if (!payment) {

@@ -167,6 +167,12 @@
       "relation": "oneToMany",
       "target": "api::coupon.coupon",
       "mappedBy": "user"
+    },
+    "wallet": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::wallet.wallet",
+      "mappedBy": "user"
     }
   }
 }
