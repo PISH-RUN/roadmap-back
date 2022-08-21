@@ -2,7 +2,6 @@
 
 const {
   walletExtendedService,
-  foundRequestExtendedService,
 } = require("../../../utils/services");
 const { userQuery } = require("../../../utils/queries");
 
@@ -34,26 +33,5 @@ module.exports = {
       targetUser.id,
       amount
     );
-  },
-
-  async fundReq(ctx) {
-    const { user: authUser } = ctx.state;
-    const { body } = ctx.request;
-    const { amount } = body;
-
-    const canRequsetFund = await walletExtendedService().checkBalance(
-      authUser.id,
-      amount
-    );
-    if (!canRequsetFund) {
-      return ctx.badRequest("Excessive amount");
-    }
-
-    const foundReq = await foundRequestExtendedService().fundWithdrawReq(
-      authUser.id,
-      amount
-    );
-
-    return { data: foundReq };
   },
 };

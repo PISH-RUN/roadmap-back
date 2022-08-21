@@ -1,11 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "found_requests",
+  "collectionName": "fund_requests",
   "info": {
-    "singularName": "found-request",
-    "pluralName": "found-requests",
-    "displayName": "found-request",
-    "description": ""
+    "singularName": "fund-request",
+    "pluralName": "fund-requests",
+    "displayName": "fund-request"
   },
   "options": {
     "draftAndPublish": true
@@ -26,7 +25,7 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::wallet.wallet",
-      "inversedBy": "found_request"
+      "inversedBy": "fund_request"
     }
   }
 }
