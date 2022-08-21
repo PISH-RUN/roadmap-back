@@ -27,6 +27,8 @@ module.exports = {
           wallet: updatedWallet.id,
         },
       });
+
+      return updatedWallet;
     } catch (e) {
       console.log(e);
       // handle rollback
@@ -39,8 +41,6 @@ module.exports = {
       if (transactionHistory) {
         await transactionHistoryService().delete(transactionHistory.id);
       }
-
-      throw new Error("Charge deposit fail");
     }
   },
 

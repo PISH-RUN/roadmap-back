@@ -27,7 +27,8 @@
       "target": "plugin::users-permissions.user"
     },
     "amount": {
-      "type": "decimal"
+      "type": "decimal",
+      "min": 0
     },
     "wallet": {
       "type": "relation",

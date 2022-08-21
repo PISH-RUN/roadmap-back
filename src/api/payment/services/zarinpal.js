@@ -6,6 +6,7 @@ const addMonths = require("date-fns/addMonths");
 const {
   paymentService,
   purchaseCustomService,
+  purchaseExtendedService
 } = require("../../../utils/services");
 const { paymentQuery } = require("../../../utils/queries");
 
@@ -87,7 +88,19 @@ module.exports = ({ strapi }) => ({
         data: { refId: data.ref_id.toString(), completedAt: now },
       });
 
-      return await purchaseExtendedService().succeed(payment.purchase);
+      const updatededPurchase = await purchaseExtendedService().succeed(
+        payment.purchase
+      );
+
+      if (!updatededPurchase) {
+        // handle rollback
+        await paymentService().update(payment.id, {
+          data: { refId: null, completedAt: null },
+        });
+        throw new Error("Service not available");
+      }
+
+      return updatededPurchase;
     }
   },
 });
