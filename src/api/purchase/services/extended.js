@@ -46,8 +46,9 @@ module.exports = ({ strapi }) => ({
       oldCoupon = await couponService().findOne(coupon.id);
     }
 
+    let updatedPurchase;
     try {
-      await purchaseService().update(purchase.id, {
+      updatedPurchase = await purchaseService().update(purchase.id, {
         data: { status: "completed" },
       });
 
@@ -62,15 +63,16 @@ module.exports = ({ strapi }) => ({
         });
       }
 
-      await walletExtendedService().chargeDeposit(
+      const updatedWallet = await walletExtendedService().chargeDeposit(
         user.id,
         subscription.currentPrice
       );
+      if (!updatedWallet) throw new Error("Cannot charge wallet");
 
-      return purchase;
+      return updatedPurchase;
     } catch (e) {
       console.log(e);
-      // rollback
+      // handle rollback
       await purchaseService().update(purchase.id, {
         data: { status: "waitingForPayment" },
       });
@@ -85,8 +87,6 @@ module.exports = ({ strapi }) => ({
           data: { used: oldCoupon.used },
         });
       }
-
-      throw new Error("Purchase failed");
     }
   },
 });
