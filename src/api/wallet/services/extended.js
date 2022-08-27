@@ -90,10 +90,10 @@ module.exports = {
         },
       });
 
-      return sourceWallet;
+      return updatedSourceWallet;
     } catch (e) {
       console.log(e);
-      // rollback
+      // handle rollback
 
       if (updatedTargetWallet) {
         await walletService().update(targetWallet.id, {
@@ -114,8 +114,6 @@ module.exports = {
       if (sourceTransactionHistory) {
         await transactionHistoryService().delete(sourceTransactionHistory.id);
       }
-
-      throw new Error("Purchase deposit fail");
     }
   },
 
