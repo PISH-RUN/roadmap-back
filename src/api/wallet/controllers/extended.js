@@ -1,8 +1,6 @@
 "use strict";
 
-const {
-  walletExtendedService,
-} = require("../../../utils/services");
+const { walletExtendedService } = require("../../../utils/services");
 const { userQuery } = require("../../../utils/queries");
 
 module.exports = {
@@ -28,10 +26,15 @@ module.exports = {
     }
 
     // purchaseDeposit
-    return await walletExtendedService().purchaseDeposit(
+    const wallet = await walletExtendedService().purchaseDeposit(
       authUser.id,
       targetUser.id,
       amount
     );
+
+    if (!wallet)
+      return ctx.badRequest("Something went wrong please try again later");
+
+    return wallet;
   },
 };
