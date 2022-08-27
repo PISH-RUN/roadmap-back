@@ -1,9 +1,15 @@
 // TODO: extract to related file
 const getService = (name) => () => strapi.service(name);
 
+// api::chat
+const chatService = getService("api::chat.chat");
+
 // api::coupon
 const couponExtendedService = getService("api::coupon.extended");
 const couponService = getService("api::coupon.coupon");
+
+// api::dialogue
+const dialogueService = getService("api::dialogue.dialogue");
 
 // api::found-request
 const fundRequestExtendedService = getService("api::fund-request.extended");
@@ -50,8 +56,10 @@ const walletExtendedService = getService("api::wallet.extended");
 const walletService = getService("api::wallet.wallet");
 
 module.exports = {
+  chatService,
   couponExtendedService,
   couponService,
+  dialogueService,
   fundRequestExtendedService,
   fundRequestService,
   metaService,

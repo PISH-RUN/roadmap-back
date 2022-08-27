@@ -1,5 +1,8 @@
 const getQuery = (name) => () => strapi.query(name);
 
+// api::dialogue
+const dialogueQuery = getQuery("api::dialogue.dialogue");
+
 // api::meta
 const metaQuery = getQuery("api::meta.meta");
 
@@ -15,6 +18,7 @@ const userQuery = getQuery("plugin::users-permissions.user");
 const userRoleQuery = getQuery("plugin::users-permissions.role");
 
 module.exports = {
+  dialogueQuery,
   metaQuery,
   paymentQuery,
   purchaseQuery,

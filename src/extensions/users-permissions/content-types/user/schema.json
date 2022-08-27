@@ -173,6 +173,18 @@
       "relation": "oneToOne",
       "target": "api::wallet.wallet",
       "mappedBy": "user"
+    },
+    "dialogues": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::dialogue.dialogue",
+      "inversedBy": "users"
+    },
+    "chats": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::chat.chat",
+      "mappedBy": "user"
     }
   }
 }
