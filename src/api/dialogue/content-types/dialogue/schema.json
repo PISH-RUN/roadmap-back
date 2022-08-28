@@ -1,0 +1,49 @@
+{
+  "kind": "collectionType",
+  "collectionName": "dialogues",
+  "info": {
+    "singularName": "dialogue",
+    "pluralName": "dialogues",
+    "displayName": "dialogue",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "uuid": {
+      "type": "uid",
+      "required": true
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "direct",
+        "group"
+      ],
+      "default": "direct",
+      "required": true
+    },
+    "users": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "dialogues"
+    },
+    "chats": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::chat.chat",
+      "mappedBy": "dialogue"
+    },
+    "admin": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    }
+  }
+}
