@@ -4,7 +4,8 @@
   "info": {
     "singularName": "dialogue",
     "pluralName": "dialogues",
-    "displayName": "dialogue"
+    "displayName": "dialogue",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -38,6 +39,11 @@
       "relation": "oneToMany",
       "target": "api::chat.chat",
       "mappedBy": "dialogue"
+    },
+    "admin": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
     }
   }
 }

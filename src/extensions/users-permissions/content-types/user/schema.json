@@ -178,7 +178,7 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::dialogue.dialogue",
-      "inversedBy": "users"
+      "mappedBy": "users"
     },
     "chats": {
       "type": "relation",
